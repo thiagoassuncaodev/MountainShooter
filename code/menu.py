@@ -8,7 +8,7 @@ from code.const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, COLOR_WHITE,COLOR_Y
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./assets/game_background_1.png')
+        self.surf = pygame.image.load('./assets/MenuBg.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self, ):
@@ -18,14 +18,14 @@ class Menu:
 
         while True:
             self.window.blit(source=self.surf,dest=self.rect)
-            self.menu_text(170,"Mountain",COLOR_ORANGE , ((WIN_WIDTH / 2), 210))
-            self.menu_text(170,"Shooter", COLOR_ORANGE, ((WIN_WIDTH / 2), 310))
+            self.menu_text(50,"Mountain",COLOR_ORANGE , ((WIN_WIDTH / 2), 70))
+            self.menu_text(50,"Shooter", COLOR_ORANGE, ((WIN_WIDTH / 2), 120))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
-                    self.menu_text(60,MENU_OPTION[i], COLOR_YELLOW, ((WIN_WIDTH / 2), 440 + 55 * i))
+                    self.menu_text(20,MENU_OPTION[i], COLOR_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i))
                 else:
-                    self.menu_text(60,MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 440 + 55 * i))
+                    self.menu_text(20,MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
 
             #check for all events
             for event in pygame.event.get():
