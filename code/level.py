@@ -6,7 +6,7 @@ from pygame.font import Font
 from code.EntityMediator import EntityMediator
 from code.entityFactory import EntityFactory
 from code.entity import Entity
-from code.const import WIN_HEIGHT,COLOR_WHITE,MENU_OPTION,EVENT_ENEMY,SPAWN_TIME
+from code.const import WIN_HEIGHT,COLOR_WHITE,MENU_OPTION,EVENT_ENEMY,SPAWN_TIME,COLOR_GREEN,COLOR_CYAN
 from code.player import player
 from code.enemy import Enemy
 
@@ -37,6 +37,10 @@ class Level:
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
+                if ent.name == 'player1':
+                    self.level_text(14, f'player1 - health: {ent.health} | Score: {ent.score}' , COLOR_GREEN, (10,25))
+                if ent.name == 'player2':
+                    self.level_text(14, f'player1 - health: {ent.health} | Score: {ent.score}', COLOR_CYAN, (10,45))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -44,6 +48,8 @@ class Level:
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('Enemy1','Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
+
+               
 
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', COLOR_WHITE, (10, 5))
             self.level_text(14, f'fps: {clock.get_fps():.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
